@@ -1,0 +1,118 @@
+.dangerInput {
+  border: 3px solid red;
+}
+.noDanger {
+    border: none;
+}
+
+.dangerWarningName {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+  top: 8rem;
+  left: 9.5rem;
+}
+
+.dangerWarningLifeSpanMin {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+  top: 11.8rem;
+  right: 46rem;
+}
+
+.dangerWarningLifeSpanMax {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+  top: 11.8rem;
+  left: 46.4rem;
+}
+
+.dangerWarningWeightMin {
+  color: red;
+  font-size: 1rem;
+  position: absolute;
+  top: 19.5rem;
+  left: 9.5rem;
+}
+
+.dangerWarningWeightMax {
+  color: red;
+  font-size: 1rem;
+  position: absolute;
+  top: 26rem;
+  left: 9.5rem;
+}
+
+.dangerWarningHeightMin {
+  color: red;
+  font-size: 1rem;
+  position: absolute;
+  top: 19.5rem;
+  left: 40.5rem;
+}
+
+.dangerWarningHeightMax {
+  color: red;
+  font-size: 1rem;
+  position: absolute;
+  top: 26rem;
+  left: 40.5rem;
+}
+
+.signName{
+  position: absolute;
+  top: 5.6rem;
+  right: 7.3rem;
+  font-size: 1.3rem;
+}
+
+.signName2{
+  position: absolute;
+  top: 5.6rem;
+  left: 7.9rem;
+  font-size: 1.3rem;
+}
+
+.signLifeSpanMin{
+  position: absolute;
+  top: 11.6rem;
+  left: 29rem;
+  font-size: 1.3rem;
+}
+
+.signLifeSpanMax{
+  position: absolute;
+  top: 11.6rem;
+  right: 28.6rem;
+  font-size: 1.3rem;
+}
+
+.signWeightMin{
+  position: absolute;
+  top: 17.1rem;
+  left: 7.8rem;
+  font-size: 1.3rem;
+}
+
+.signWeightMax{
+  position: absolute;
+  top: 23.6rem;
+  left: 7.8rem;
+  font-size: 1.3rem;
+}
+
+.signHeightMin{
+  position: absolute;
+  top: 17.1rem;
+  right: 7.3rem;
+  font-size: 1.3rem;
+}
+
+.signHeightMax{
+  position: absolute;
+  top: 23.6rem;
+  right: 7.3rem;
+  font-size: 1.3rem;
+}
