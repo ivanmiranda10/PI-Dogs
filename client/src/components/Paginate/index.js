@@ -3,7 +3,6 @@ import { Nav, PaginateContainer, LinkButton } from './paginateStyle';
 
 export default function Paginate({ dogsPerPage, dogs, paginate}) {
     const pageNumbers = []
-    
     for (let i = 1; i <= Math.ceil(dogs/dogsPerPage); i++){
         pageNumbers.push(i)
     }
@@ -15,7 +14,7 @@ export default function Paginate({ dogsPerPage, dogs, paginate}) {
             return (
               <LinkButton
                 key={number}
-                className="link"
+                className="link active"
                 onClick={() => paginate(number)}
               >
                 {number}

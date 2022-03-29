@@ -14,7 +14,7 @@ const useLoading = () => {
     Loader();
   }, [])
   
-   return { loading, setLoading };
+   return { loading, Loader };
 }
 
 export default useLoading;

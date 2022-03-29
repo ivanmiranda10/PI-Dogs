@@ -7,15 +7,36 @@ const SelectFilters = ({
   handlerOrderByName,
   handlerOrderByWeightMin,
   handlerOrderByWeightMax,
-  temperaments
+  temperaments,
+  setCurrentPage
 }) => {
+     const creationFilter = (e) => {
+       handlerFilterByCreation(e);
+       setCurrentPage(1);
+     };
+     const temperamentFilter = (e) => {
+       handlerFilterByTemperaments(e);
+       setCurrentPage(1);
+     };
+     const nameOrder = (e) => {
+       handlerOrderByName(e);
+       setCurrentPage(1);
+     };
+     const weightMinOrder = (e) => {
+       handlerOrderByWeightMin(e);
+       setCurrentPage(1);
+     };
+     const weightMaxOrder = (e) => {
+       handlerOrderByWeightMax(e);
+       setCurrentPage(1);
+     };  
   return (
     <>
       <div className="select">
         <button className="dropBtn">Origin</button>
         <section
           className="dropdown-content"
-          onClick={(e) => handlerFilterByCreation(e)}
+          onClick={(e) => creationFilter(e)}
         >
           <option value="created">Created</option>
           <option value="api">Existent</option>
@@ -24,10 +45,7 @@ const SelectFilters = ({
       </div>
       <div className="select">
         <button className="dropBtn">Name</button>
-        <section
-          className="dropdown-content"
-          onClick={(e) => handlerOrderByName(e)}
-        >
+        <section className="dropdown-content" onClick={(e) => nameOrder(e)}>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </section>
@@ -36,7 +54,7 @@ const SelectFilters = ({
         <button className="dropBtn">Weight Min</button>
         <section
           className="dropdown-content-weight"
-          onClick={(e) => handlerOrderByWeightMin(e)}
+          onClick={(e) => weightMinOrder(e)}
         >
           <option value="+WeightMin">Major Weight Min</option>
           <option value="-WeightMin">Minor Weight Min</option>
@@ -46,7 +64,7 @@ const SelectFilters = ({
         <button className="dropBtn">Weight Max</button>
         <section
           className="dropdown-content-weight"
-          onClick={(e) => handlerOrderByWeightMax(e)}
+          onClick={(e) => weightMaxOrder(e)}
         >
           <option value="+WeightMax">Major Weight Max</option>
           <option value="-WeightMax">Minor Weight Max</option>
@@ -56,7 +74,7 @@ const SelectFilters = ({
         <button className="dropBtn">Temperaments</button>
         <section
           className="dropdown-content-temperaments"
-          onClick={(e) => handlerFilterByTemperaments(e)}
+          onClick={(e) => temperamentFilter(e)}
         >
           <option value="allTemps">All Temperaments</option>
           {temperaments?.map((el, index) => {

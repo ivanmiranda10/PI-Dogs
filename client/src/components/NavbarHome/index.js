@@ -16,7 +16,8 @@ const NavbarHome = ({
   handlerOrderByWeightMin,
   handlerOrderByWeightMax,
   temperaments,
-  setCurrentPage
+  setCurrentPage,
+  Loader
 }) => {
   return (
     <>
@@ -33,9 +34,10 @@ const NavbarHome = ({
               handlerOrderByWeightMin={handlerOrderByWeightMin}
               handlerOrderByWeightMax={handlerOrderByWeightMax}
               temperaments={temperaments}
+              setCurrentPage={setCurrentPage}
             />
           </NavMenu>
-          <SearchBar setCurrentPage={setCurrentPage} />
+          <SearchBar setCurrentPage={setCurrentPage} Loader={Loader} />
         </NavBarContainer>
       </Nav>
     </>

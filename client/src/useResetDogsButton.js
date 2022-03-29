@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs } from "./redux/actions"
+import { getAllDogs } from "./redux/actions";
 
 
 const useResetDogsButton = () => {

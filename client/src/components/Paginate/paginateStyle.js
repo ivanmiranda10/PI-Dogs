@@ -33,4 +33,5 @@ export const LinkButton = styled.button`
     transform: scale(1.2);
     transition: 0.2s ease-in-out;
   }
+  
 `;

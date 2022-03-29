@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,6 @@ import {
 import FadeLoader from "react-spinners/FadeLoader";
 import useLoading from '../Loading';
 import useResetDogsButton from '../../useResetDogsButton';
-import usePaginate from './usePaginate';
 import useFilters from './useFilters';
 import useOrders from './useOrders';
 import useScrollTop from './useScrollTop';
@@ -27,13 +26,24 @@ import useScrollTop from './useScrollTop';
 export const Home = () => {
   const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.temperaments);
+  const dogs = useSelector((state) => state.dogs);
 
   useEffect(() => {
     dispatch(getAllDogs());
     dispatch(getTemperaments());
   }, [dispatch]);
   
-  const { loading } = useLoading();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage] = useState(9);
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  
+  const { loading, Loader } = useLoading();
   
   const {
     resetButton,
@@ -44,14 +54,6 @@ export const Home = () => {
     orderWeightMax,
     dog,
   } = useResetDogsButton();
-   
-   const {
-     dogs,
-     setCurrentPage,
-     dogsPerPage,
-     currentDogs,
-     paginate
-   } = usePaginate();
    
    const {
       handlerFilterByCreation,
@@ -65,6 +67,12 @@ export const Home = () => {
    } = useOrders();
   
   const ScrollToTopOnMount = useScrollTop();
+  
+  const resetPage = () => {
+      resetButton()
+      setCurrentPage(1)
+      Loader()
+  }
 
   return (
     <HomeContainer>
@@ -77,10 +85,11 @@ export const Home = () => {
         handlerOrderByWeightMax={handlerOrderByWeightMax}
         temperaments={temperaments}
         setCurrentPage={setCurrentPage}
+        Loader={Loader}
       />
       <PagUpperContainer loading={loading}>
         <Link to="/">
-          <BackLanding onClick={resetButton}>Go Back</BackLanding>
+          <BackLanding onClick={resetPage}>Go Back</BackLanding>
         </Link>
         <Paginate
           dogsPerPage={dogsPerPage}
@@ -96,7 +105,7 @@ export const Home = () => {
         || orderWeightMax.length 
         || dog.length 
         ? 
-        <ResetDogsButton onClick={resetButton} loading={loading}>
+        <ResetDogsButton onClick={resetPage} loading={loading}>
           Reset Dogs
         </ResetDogsButton>
         : 
