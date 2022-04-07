@@ -8,7 +8,10 @@
   <img height="200" src="./dog.png" />
 </p>
 
-## Link --> <a href="https://app-dogs-henry.vercel.app/" target="_blank">https://app-dogs-henry.vercel.app/</a>
+## Link 
+<p>
+<a href="https://app-dogs-henry.vercel.app/" target="_blank"> https://app-dogs-henry.vercel.app/ </a>
+</p>    
 
 ## Project Objectives
 
