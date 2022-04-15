@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Img from '../../photos/pexels-lumn-406014.jpg';
+// import Img from '../../photos/pexels-lumn-406014.jpg';
 
 export const Background = styled.div`
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), url(${Img});
-  background-size: "cover";
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -15,12 +15,12 @@ export const AboutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const Title = styled.h1`
-  padding-top: 0.5rem; 
+  padding-top: 0.5rem;
   color: #000;
-`
+`;
 
 export const DescriptionContainer = styled.div`
   /* margin: 0 auto; */
@@ -29,8 +29,11 @@ export const DescriptionContainer = styled.div`
   position: relative;
   border-radius: 10px;
   height: 180px;
-  background: linear-gradient(rgba(10, 6, 6, 0.484) 0%, rgba(10, 10, 10, 0.508) 60%);
-`
+  background: linear-gradient(
+    rgba(10, 6, 6, 0.484) 0%,
+    rgba(10, 10, 10, 0.508) 60%
+  );
+`;
 
 export const Content = styled.p`
   margin-top: 0.5rem;
@@ -38,14 +41,14 @@ export const Content = styled.p`
   color: #fff;
   font-size: 1rem;
   padding: 0 10px;
-`
+`;
 
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 1.5rem;
-`
+`;
 
 export const Buttons = styled.button`
   border-radius: 10px;
@@ -53,7 +56,7 @@ export const Buttons = styled.button`
   color: #fff;
   border: none;
   padding: 5px 8px;
-  
+
   &:hover {
     cursor: pointer;
     background-color: #fff;
@@ -61,4 +64,4 @@ export const Buttons = styled.button`
     transition: 0.2s ease-in-out;
     font-weight: bold;
   }
-`
+`;

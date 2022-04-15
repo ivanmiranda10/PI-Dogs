@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import ImgBg from "../../photos/pexels-chevanon-photography-1108099.jpg";
+// import ImgBg from "../../../../client/src/photos/pexels-chevanon-photography-1108099.jpg";
 import { MdArrowForward, MdKeyboardArrowRight } from "react-icons/md";
 
 export const LandingContainer = styled.div`
-  background: linear-gradient(to left, rgba(0.2, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${ImgBg});
+  background-image: linear-gradient(
+      to left,
+      rgba(0.2, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url("https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   height: 100vh;
   background-position: center;
   background-size: cover;
@@ -25,7 +30,7 @@ export const LandingItems = styled.div`
   max-height: 100%;
   padding: 0 6rem;
   width: 1250px;
-  color: #fff; 
+  color: #fff;
   text-transform: uppercase;
   line-height: 1;
   font-weight: bold;
@@ -36,12 +41,11 @@ export const LandingItems = styled.div`
   }
 `;
 
-
 export const LandingH1 = styled.h1`
   font-size: clamp(4rem, 10vw, 4rem);
   margin-bottom: 1rem;
   padding: 0 0.5rem;
-  box-shadow: 5px 5px #f2c16b; 
+  box-shadow: 5px 5px #f2c16b;
   letter-spacing: 3px;
 
   @media screen and (max-width: 768px) {
@@ -52,7 +56,6 @@ export const LandingH1 = styled.h1`
     font-size: 32px;
   }
 `;
-
 
 export const LandingP = styled.p`
   font-size: clamp(1.5rem, 1.5vw, 2rem);
@@ -66,7 +69,6 @@ export const LandingP = styled.p`
     font-size: 18px;
   }
 `;
-
 
 export const LandingButton = styled.button`
   border-radius: 50px;

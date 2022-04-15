@@ -15,11 +15,9 @@ export const DogInfo = styled.div`
 
 export const DogImg = styled.img`
   height: 240px;
-  /* min-height: 330px; */
-  /* max-height: 60%; */
   width: 322px;
   box-shadow: 8px 8px #f2c16b;
-  object-fit: cover;
+  object-fit: fill;
 `;
 
 export const DogName = styled.h2`
@@ -55,7 +53,7 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const DogBtnDetail = styled.button`
   font-size: 1rem;
@@ -75,7 +73,6 @@ export const DogBtnDetail = styled.button`
     color: #000;
   }
 `;
-
 
 export const DogBtnDelete = styled.button`
   font-size: 1rem;

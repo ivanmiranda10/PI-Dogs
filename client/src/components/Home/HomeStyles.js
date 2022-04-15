@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import ImgBg from "../../photos/pexels-tina-nord-7324407.jpg";
+// import ImgBg from "../../../../client/src/photos/pexels-tina-nord-7324407.jpg";
 
 export const HomeContainer = styled.div`
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), url(${ImgBg});
-  background-size: "cover";
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    url("https://images.pexels.com/photos/7324407/pexels-photo-7324407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;

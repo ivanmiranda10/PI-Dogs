@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import ImgBg from "../../photos/pexels-jozef-fehér-969381.jpg";
+// import ImgBg from "../../photos/pexels-jozef-fehér-969381.jpg";
 
 export const DogDetailBackground = styled.div`
   background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    url(${ImgBg});
-  background-size: "cover";
+    url("https://images.pexels.com/photos/969381/pexels-photo-969381.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  min-height: 100vh;
 `;
-
 
 export const DogDetailContainer = styled.div`
   display: flex;
@@ -44,7 +43,6 @@ export const DogTemperaments = styled.h3`
   color: #fff;
 `;
 
-
 export const DogWeight = styled.h3`
   padding-bottom: 1rem;
   color: #fff;
@@ -55,15 +53,13 @@ export const DogHeight = styled.h3`
   color: #fff;
 `;
 
-
 export const DogImage = styled.img`
   height: 300px;
   min-height: 300px;
   max-height: 100%;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 3);
-  object-fit: cover;
+  object-fit: fill;
 `;
-
 
 export const DogLifeSpan = styled.h3`
   margin-bottom: 1rem;
@@ -106,4 +102,4 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   margin-top: 10rem;
   padding-bottom: 25rem;
-`
+`;

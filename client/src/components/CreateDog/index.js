@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getTemperaments } from '../../redux/actions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getTemperaments } from "../../redux/actions";
 import {
   Background,
   PaddingTop,
@@ -9,62 +9,52 @@ import {
   Form,
   Title,
   FormInputs,
-  
   LabelName,
   InputName,
-  
   LabelLifeSpanMin,
   InputLifeSpanMin,
-  
   LabelLifeSpanMax,
   InputLifeSpanMax,
-  
   LabelWeightMin,
   InputWeightMin,
-  
   LabelWeightMax,
   InputWeightMax,
-  
   LabelHeightMin,
   InputHeightMin,
-  
   LabelHeightMax,
   InputHeightMax,
-  
   LabelTemperaments,
   SelectTemperaments,
   TemperamentsList,
   ChosenTemperaments,
   DeleteTempsButton,
-  
   SubmitButtonContainer,
   SubmitButton,
-  BackButton
+  BackButton,
 } from "./CreateDogStyle.js";
-import './Warning.css';
-import useForm from './useForm';
-import useResetDogsButton from '../../useResetDogsButton';
-
+import "./Warning.css";
+import useForm from "./useForm";
+import useResetDogsButton from "../../useResetDogsButton";
 
 const CreateDog = () => {
-    const {
-        input,
-        lifeSpan,
-        error,
-        handleInputChange,
-        handleTemperamentSelect,
-        handleTemperamentDelete,
-        handleSubmit
-    } = useForm()
-    
-    const temperaments = useSelector((state) => state.temperaments)
-    const dispatch = useDispatch()
-    
-    useEffect(() => {
-      dispatch(getTemperaments());
-    }, [dispatch]);
-    
-    const { resetDogs } = useResetDogsButton()
+  const {
+    input,
+    lifeSpan,
+    error,
+    handleInputChange,
+    handleTemperamentSelect,
+    handleTemperamentDelete,
+    handleSubmit,
+  } = useForm();
+
+  const temperaments = useSelector((state) => state.temperaments);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
+
+  const { resetButton } = useResetDogsButton();
 
   return (
     <Background>
@@ -73,7 +63,7 @@ const CreateDog = () => {
           <Form onSubmit={handleSubmit}>
             <Title>Create Your Own Breed!</Title>
             <Link to="/home">
-              <BackButton onClick={resetDogs}>Back</BackButton>
+              <BackButton onClick={resetButton}>Back</BackButton>
             </Link>
             <FormInputs>
               <LabelName>Name: </LabelName>
@@ -83,6 +73,9 @@ const CreateDog = () => {
                 name="name"
                 placeholder="Enter Name"
                 value={input.name}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 onChange={handleInputChange}
               />
               {!input.name || error.nameErr ? (
@@ -102,6 +95,9 @@ const CreateDog = () => {
                 className={error.life_spanMinErr ? "dangerInput" : "noDanger"}
                 name="Min"
                 value={lifeSpan.Min}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 placeholder="Year"
                 onChange={handleInputChange}
               />
@@ -119,6 +115,9 @@ const CreateDog = () => {
                 className={error.lifeSpanMaxErr ? "dangerInput" : "noDanger"}
                 name="Max"
                 value={lifeSpan.Max}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 placeholder="Year"
                 onChange={handleInputChange}
               />
@@ -139,6 +138,9 @@ const CreateDog = () => {
                 name="weightMin"
                 placeholder="Kg"
                 value={input.weightMin}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 onChange={handleInputChange}
               />
               {!input.weightMin || error.weightMinErr ? (
@@ -156,6 +158,9 @@ const CreateDog = () => {
                 name="weightMax"
                 placeholder="Kg"
                 value={input.weightMax}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 onChange={handleInputChange}
               />
               {!input.weightMax || error.weightMaxErr ? (
@@ -173,6 +178,9 @@ const CreateDog = () => {
                 name="heightMin"
                 placeholder="Cm"
                 value={input.heightMin}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 onChange={handleInputChange}
               />
               {!input.heightMin || error.heightMinErr ? (
@@ -190,6 +198,9 @@ const CreateDog = () => {
                 name="heightMax"
                 placeholder="Cm"
                 value={input.heightMax}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
                 onChange={handleInputChange}
               />
               {!input.heightMax || error.heightMaxErr ? (
@@ -200,56 +211,45 @@ const CreateDog = () => {
               ) : null}
             </FormInputs>
             <FormInputs>
-              <LabelTemperaments>Temperaments (6 Max): </LabelTemperaments>
+              <LabelTemperaments>Temperaments:</LabelTemperaments>
               <SelectTemperaments onChange={handleTemperamentSelect}>
-                <option value="temps">Select Temperaments</option>
-                {temperaments?.map((el, index) => {
-                  return (
-                    <option
-                      value={el.name}
-                      disabled={input.temperament.length >= 6 ? true : false}
-                      key={index}
-                    >
-                      {el.name}
-                    </option>
-                  );
-                })}
+                <option value="" disabled selected>
+                  Select Temperaments
+                </option>
+                {temperaments
+                  ?.filter((temps) => temps.name !== "No temperaments")
+                  .map((el, index) => {
+                    return (
+                      <option
+                        value={el.name}
+                        disabled={
+                          [...new Set(input.temperament)].length >= 14
+                            ? true
+                            : false
+                        }
+                        key={index}
+                      >
+                        {el.name}
+                      </option>
+                    );
+                  })}
               </SelectTemperaments>
               <TemperamentsList>
-                {!input.temperament.includes("No temperaments")
-                  ? [...new Set(input.temperament)]
-                      .filter((elem) => elem !== "temps")
-                      .map((el) => {
-                        return (
-                          <ChosenTemperaments>
-                            <p key={el}>
-                              {el + " "}
-                              <DeleteTempsButton
-                                name={el}
-                                onClick={(e) => handleTemperamentDelete(e)}
-                              >
-                                ❌
-                              </DeleteTempsButton>
-                            </p>
-                          </ChosenTemperaments>
-                        );
-                      })
-                  : input.temperament.length
-                  ? input.temperament
-                      .splice(0, input.temperament.length, "No temperaments")
-                      .filter((el) => el === "No temperaments")
-                      .map((elem) => (
-                        <p key={elem}>
-                          {elem + " "}
-                          <DeleteTempsButton
-                            name={elem}
-                            onClick={(e) => handleTemperamentDelete(e)}
-                          >
-                            ❌
-                          </DeleteTempsButton>
-                        </p>
-                      ))
-                  : [...input.temperament]}
+                {[...new Set(input.temperament)].map((el) => {
+                  return (
+                    <ChosenTemperaments>
+                      <p key={el}>
+                        {el + " "}
+                        <DeleteTempsButton
+                          name={el}
+                          onClick={(e) => handleTemperamentDelete(e)}
+                        >
+                          ❌
+                        </DeleteTempsButton>
+                      </p>
+                    </ChosenTemperaments>
+                  );
+                })}
               </TemperamentsList>
             </FormInputs>
             <SubmitButtonContainer>

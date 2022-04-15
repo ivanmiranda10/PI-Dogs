@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getDogByName } from '../../redux/actions';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getDogByName } from "../../redux/actions";
 
 const useSearch = () => {
   const [dog, setDog] = useState("");
@@ -11,8 +11,8 @@ const useSearch = () => {
     dispatch(getDogByName(dog));
     setDog("");
   };
-  
-  return { SubmitHandler, dog, setDog }
-}
 
-export default useSearch
+  return { SubmitHandler, dog, setDog };
+};
+
+export default useSearch;

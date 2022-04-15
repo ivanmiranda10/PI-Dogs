@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import DogDetail from "./components/DogDetail";
 import CreateDog from "./components/CreateDog";
 import About from "./components/About";
-import { GlobalStyle } from "./globalStyles"; 
+import { GlobalStyle } from "./globalStyles";
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route path="/dog/:id" element={<DogDetail />} />
         <Route path="/dog" element={<CreateDog />} />
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<Navigate to='/'/>} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );

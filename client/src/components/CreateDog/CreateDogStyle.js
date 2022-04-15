@@ -1,18 +1,21 @@
 import styled from "styled-components";
-import ImgBg from "../../photos/pexels-eugenio-felix-3015947.jpg";
+// import ImgBg from "../../photos/pexels-eugenio-felix-3015947.jpg";
 
 export const Background = styled.div`
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${ImgBg});
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("https://images.pexels.com/photos/3015947/pexels-photo-3015947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   height: 100vh;
   background-position: center;
   background-size: cover;
-`
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const PaddingTop = styled.div`
- padding-top: 1.5rem;
-`
-
+  /* padding-top: 12.5rem; */
+`;
 
 export const CreateDogContainer = styled.div`
   margin: 0 auto;
@@ -21,9 +24,11 @@ export const CreateDogContainer = styled.div`
   position: relative;
   border-radius: 10px;
   height: 520px;
-  background: linear-gradient(rgba(10, 6, 6, 0.884) 0%, rgba(10, 10, 10, 0.508) 60%);
-`
-
+  background: linear-gradient(
+    rgba(10, 6, 6, 0.884) 0%,
+    rgba(10, 10, 10, 0.508) 60%
+  );
+`;
 
 export const Form = styled.form`
   position: absolute;
@@ -36,8 +41,7 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
+`;
 
 export const Title = styled.h1`
   position: absolute;
@@ -49,11 +53,10 @@ export const Title = styled.h1`
   color: #fff;
 `;
 
-
 export const FormInputs = styled.div`
   margin-bottom: 0;
   /* width: 80%; */
-`
+`;
 
 // ----------------------- Name y Life Span ----------------------------
 
@@ -87,7 +90,6 @@ export const LabelLifeSpanMin = styled.label`
   top: 9rem;
   right: 35.6rem;
 `;
-
 
 export const InputLifeSpanMin = styled.input`
   padding-left: 90px;
@@ -125,7 +127,6 @@ export const InputLifeSpanMax = styled.input`
 `;
 
 // ----------------------------------------------------------------------
-
 
 // ------------------------------- Weight Min y Weight Max --------------
 
@@ -172,7 +173,6 @@ export const InputWeightMax = styled.input`
 `;
 // ----------------------------------------------------------------------
 
-
 // ------------------------- Height Min y Height Max ----------------------
 
 export const LabelHeightMin = styled.label`
@@ -205,7 +205,6 @@ export const LabelHeightMax = styled.label`
   right: 12.5rem;
 `;
 
-
 export const InputHeightMax = styled.input`
   padding-left: 90px;
   outline: none;
@@ -219,7 +218,6 @@ export const InputHeightMax = styled.input`
 `;
 // -------------------------------------------------------------------------
 
-
 // --------------------------------- Temperaments --------------------------
 
 export const LabelTemperaments = styled.label`
@@ -228,7 +226,7 @@ export const LabelTemperaments = styled.label`
   color: #fff;
   position: absolute;
   top: 14.5rem;
-  right: 24.6rem;
+  right: 26.6rem;
 `;
 
 export const SelectTemperaments = styled.select`
@@ -243,35 +241,21 @@ export const SelectTemperaments = styled.select`
   right: 24.3rem;
 `;
 
-
 export const TemperamentsList = styled.div`
-  /* color: #fff;
-  position: absolute;
-  top: 21.5rem;
-  right: 14.5rem; */
-  /* position: relative; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  /* padding-top: 10rem; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  line-height: 0;
   color: #fff;
-  position: absolute;
-  top: 19rem;
-  left: 27rem;
-  /* padding-top: 5rem; */
+  margin-top: 15.1rem;
+  margin-left: 20px;
+  font-size: 14px;
 `;
 
 export const ChosenTemperaments = styled.div`
- display: flex;
- flex-direction: column;
- align-items: center;
- padding-top: 1.5px;
- /* justify-content: flex-end; */
- /* padding: 1rem; */
-  /* position: absolute;
-  bottom: 10px;
-  right: 0px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5px;
 `;
 
 export const DeleteTempsButton = styled.button`
@@ -291,12 +275,11 @@ export const SubmitButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-`
-
+`;
 
 export const SubmitButton = styled.button`
   position: absolute;
-  bottom: 25px;  
+  bottom: 25px;
   width: 80%;
   height: 40px;
   margin-top: 10px;

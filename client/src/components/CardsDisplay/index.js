@@ -1,10 +1,19 @@
-import React from 'react';
-import CardDog from '../DogCard';
-import useDeleteDog from '../Home/useDeleteDog';
-import { Cards } from './CardsStyle';
+import React from "react";
+import { useDispatch } from "react-redux";
+import CardDog from "../DogCard";
+import { getAllDogs } from "../../redux/actions";
 
-const CardsDisplay = ({ currentDogs }) => {
+import useDeleteDog from "../Home/useDeleteDog";
+import { Cards } from "./CardsStyle";
+
+const CardsDisplay = ({ currentDogs, Loader, resetPage }) => {
   const handlerDeleteDogs = useDeleteDog();
+  const dispatch = useDispatch();
+
+  const deleteAction = (e) => {
+    handlerDeleteDogs(e).then(() => dispatch(getAllDogs()));
+    Loader();
+  };
   return (
     <>
       {currentDogs?.map((el, index) => {
@@ -15,15 +24,19 @@ const CardsDisplay = ({ currentDogs }) => {
               name={el.name}
               weightMin={el.weightMin}
               weightMax={el.weightMax}
-              temperaments={ el.temperament || el.temperaments.map((temp) => temp.name).join(", ") }
+              temperaments={
+                el.temperament ||
+                el.temperaments.map((temp) => temp.name).join(", ")
+              }
               id={el.id}
-              handlerDeleteDogs={handlerDeleteDogs}
+              deleteAction={deleteAction}
+              resetPage={resetPage}
             />
           </Cards>
         );
       })}
     </>
   );
-}
+};
 
 export default CardsDisplay;

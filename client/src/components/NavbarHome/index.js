@@ -17,7 +17,7 @@ const NavbarHome = ({
   handlerOrderByWeightMax,
   temperaments,
   setCurrentPage,
-  Loader
+  Loader,
 }) => {
   return (
     <>
