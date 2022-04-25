@@ -73,8 +73,14 @@ export const BackLanding = styled.button`
   }
 `;
 
+export const ResetButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ResetDogsButton = styled.button`
-  margin-left: 36.5rem;
   border-radius: 50px;
   background: #fff;
   white-space: nowrap;

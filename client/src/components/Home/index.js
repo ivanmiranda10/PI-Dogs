@@ -13,6 +13,7 @@ import {
   PagBottomContainer,
   DogsWrapper,
   BackLanding,
+  ResetButtonContainer,
   ResetDogsButton,
 } from "./HomeStyles";
 import FadeLoader from "react-spinners/FadeLoader";
@@ -103,9 +104,11 @@ export const Home = () => {
       orderWeightMin.length ||
       orderWeightMax.length ||
       dog.length ? (
-        <ResetDogsButton onClick={resetPage} loading={loading}>
-          Reset Dogs
-        </ResetDogsButton>
+        <ResetButtonContainer>
+          <ResetDogsButton onClick={resetPage} loading={loading}>
+            Reset Dogs
+          </ResetDogsButton>
+        </ResetButtonContainer>
       ) : null}
       <DogsContainer>
         <DogsWrapper>
