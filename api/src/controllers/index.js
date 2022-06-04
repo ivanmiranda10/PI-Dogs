@@ -1,56 +1,74 @@
-require("dotenv").config();
-const axios = require("axios");
-const { Dog, Temperament } = require("../db.js");
-const { API_KEY } = process.env;
+const getApiInfo = require("./infoApi");
 
+class Model {
+  constructor(modelOne, modelTwo) {
+    this.modelOne = modelOne;
+    this.modelTwo = modelTwo;
+  }
 
+  getById = async (req, res, next) => {
+    const { id } = req.params;
+    if (id.includes("-")) {
+      return this.modelOne
+        .findByPk(id, {
+          include: [
+            {
+              model: this.modelTwo,
+              attributes: ["name"],
+              through: {
+                attributes: [],
+              },
+            },
+          ],
+        })
+        .then((result) => res.send(result))
+        .catch((err) => next(err));
+    } else {
+      getApiInfo()
+        .then((results) => {
+          res.send(results.find((el) => el.id === Number(id)));
+        })
+        .catch((err) => next(err));
+    }
+  };
 
-const getApiInfo = async () => {
-    const apiDogs = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-    // console.log(apiDogs.data)
-    const dogsArray = await apiDogs.data.map((el) => {
-      return {
-        id: el.id,
-        name: el.name,
-        weightMin: Number(el.weight.metric.substring(0, 2).trim()),
-        weightMax: Number(el.weight.metric.substring(4).trim()),
-        heightMin: Number(el.height.metric.substring(0, 2).trim()),
-        heightMax: Number(el.height.metric.substring(4).trim()),
-        temperament: el.temperament ? el.temperament : "No temperaments",
-        life_span: el.life_span,
-        image: el.image.url,
-      };
-    });
-    // console.log(dogsArray.slice(0, 10));
-    return dogsArray;
-};
-
-
-
-const getDbInfo = async () => {
-    return await Dog.findAll({
-      include: [
-        {
-          model: Temperament,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
+  post = async (req, res, next) => {
+    const { name, temperament, ...body } = req.body;
+    try {
+      const [dog, created] = await this.modelOne.findOrCreate({
+        where: { name },
+        defaults: {
+          ...body,
+          image:
+            "https://www.pngitem.com/pimgs/m/76-767784_clip-art-boxer-dog-silhouette-vector-boxer-dog.png",
         },
-      ],
-    });
-};
+      });
+      let newDogTemperaments = await this.modelTwo.findAll({
+        where: { name: temperament },
+      });
+      let noTemp = await this.modelTwo.findOne({
+        where: { name: "No temperaments" },
+      });
+      dog.addTemperaments(
+        newDogTemperaments.length ? newDogTemperaments : noTemp
+      );
+      res
+        .status(200)
+        .send(
+          created === false ? `${name} already exist` : "created successfully"
+        );
+    } catch (error) {
+      next(error);
+    }
+  };
 
-
-
-const allInfo = async () => {
-  const apiData = await getApiInfo();
-  const dbData = await getDbInfo();
-  const concatData = dbData.concat(apiData)
-  return concatData;
-};
-
-
-module.exports = {
-    allInfo
+  delete = (req, res, next) => {
+    const { id } = req.params;
+    return this.modelOne
+      .destroy({ where: { id: id } })
+      .then((resp) => res.status(200).json(resp))
+      .catch((err) => next(err));
+  };
 }
+
+module.exports = Model;

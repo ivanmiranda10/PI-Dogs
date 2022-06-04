@@ -1,42 +1,26 @@
 const { Router } = require("express");
 const router = Router();
-const { getDogs, getDogById, postDog, deleteDog } = require('../controllers/DogFunctions.js');
+const dogController = require("../controllers/DogFunctions");
 
+router.get("/dogs", dogController.getAll);
 
-router.get('/dogs', getDogs);
+router.get("/dogs/:id", dogController.getById);
 
-router.get('/dogs/:id', getDogById);
+router.post("/dog", dogController.post);
 
-router.post('/dog', postDog);
-
-router.delete('/dog/delete/:id', deleteDog);
-
+router.delete("/dog/delete/:id", dogController.delete);
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // router.get('/dog/filterCreation/:payload', async (req, res, next) => {
 //     const { payload } = req.params;
 //     try {
 //         const allData = await allInfo()
 //         const filter =
-//         payload === 'created' 
+//         payload === 'created'
 //         ? allData.filter(el => el.createdInDB)
 //         : allData.filter(el => !el.createdInDB)
-//         filter.length 
+//         filter.length
 //         ? res.json(payload === 'all' ? allData : filter)
 //         : res.sendStatus(404, 'No filters found')
 //     } catch(err){
@@ -68,17 +52,16 @@ module.exports = router;
 //     }
 // })
 
-
 // router.put('/dog/updateDog/:id', async (req, res, next) => {
 //     const { id } = req.params;
 //     const { name, heightMin, heightMax, weightMin, weightMax, life_span } = req.body;
 //     try{
 //         const updateDog = await Dog.update({
-//             name, 
-//             heightMin, 
-//             heightMax, 
-//             weightMin, 
-//             weightMax, 
+//             name,
+//             heightMin,
+//             heightMax,
+//             weightMin,
+//             weightMax,
 //             life_span,
 //         }, {
 //             where: { id: id }
@@ -91,14 +74,13 @@ module.exports = router;
 
 // })
 
-
 // router.put('/dog/updateTemp', async (req, res, next) => {
 //     // const { overwrite } = req.query;
 //     const { idDog, idTemp } = req.body;
 //     try {
 //         if(idDog && idTemp){
 //             const dog = await Dog.findByPk(idDog)
-//             // overwrite 
+//             // overwrite
 //             res.json(await dog.setTemperaments(idTemp))
 //             // : res.json(await dog.addTemperaments(idTemp))
 //        } else {
